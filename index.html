@@ -98,68 +98,123 @@
 
     <header>
         <h1>Predictive Analytics Semester Project</h1>
-        <p>ISOM 835 - Business Intelligence and Analytics</p>
+        <p>Hospital Readmission Prediction | ISOM 835 - Business Intelligence and Analytics</p>
     </header>
 
     <nav>
-        <a href="#abstract">Abstract</a>
+        <a href="#Introduction">Introduction</a>
         <a href="#data">Data</a>
         <a href="#analysis">Analysis</a>
-        <a href="#results">Results</a>
+        <a href="#Conclusion">Conclusion</a>
     </nav>
 
     <div class="container">
         <div class="project-meta">
-            <p><strong>Author:</strong> [Your Name]</p>
-            <p><strong>Date:</strong> Spring 2024</p>
+            <p><strong>Author:</strong> [Jacqueline Helle]</p>
+            <p><strong>Date:</strong> Spring 2026</p>
         </div>
 
-        <section id="abstract">
-            <h2>Project Abstract</h2>
+        <section id="Introduction">
+            <h2>Introduction</h2>
+            
+            <h3>Problem Statement<h3>
             <p>
-                This project focuses on applying predictive modeling techniques to solve a specific business problem. 
-                Inspired by the course curriculum, I am exploring how machine learning algorithms can provide 
-                actionable insights into [Briefly mention your topic, e.g., customer churn or sales forecasting].
+                Hospital readmissions are a significant challenge in healthcare, leading to increased costs and poorer patient outcomes. Identifying patients at risk of readmission can help improve care and reduce unnecessary hospital utilization.
             </p>
+            <h3>Project Objective</h3>
+            <p>
+                The objective of this project was to build a classification model that predicts whether a patient will be readmitted within 30 days using demographic, clinical, and hospital utilization data.
+            </p> 
         </section>
 
         <section id="data">
-            <h2>Data Collection & Cleaning</h2>
+            <h2>Data</h2>
+             <h3>Data Source</h3>
             <p>
-                The dataset used in this study was sourced from [Source Name]. It contains approximately [X] observations 
-                and [Y] variables. Preliminary cleaning involved handling missing values, encoding categorical 
-                variables, and normalizing numerical features.
+                The dataset used for this analysis was obtained from Kaggle and contains patient-level hospital data related to diabetic patient encounters. It includes demographic information, diagnostic variables, and measures of prior healthcare utilization.
             </p>
-        </section>
 
+            <h3>Data Description</h3>
+            <p>
+                The dataset contains over 100,000 patient records and more than 50 variables. These include demographic, clinical, and utilization-related features such as age, number of medications, time in the hospital, and prior inpatient visits. The original target variable, <strong>readmitted</strong>, indicates whether a patient was not readmitted, readmitted after 30 days, or readmitted within 30 days.
+            </p>
+
+            <h3>Exploratory Data Analysis</h3>
+            <p>
+                Exploratory data analysis revealed that patients who were readmitted within 30 days tended to have a higher number of prior inpatient visits and slightly longer hospital stays. The analysis also showed that the dataset was imbalanced, with significantly more patients not readmitted within 30 days than patients who were readmitted.
+            </p>
+            <div class="graph">
+                <img src="readmission_distribution.png" alt="Readmission distribution graph">
+                <div class="graph-caption">
+                    Figure 1. Distribution of patients readmitted within 30 days versus not readmitted within 30 days.
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>EDA Insight:</strong> Previous healthcare utilization appeared to be an important indicator of future readmission risk, especially among patients with more prior inpatient visits.
+            </div>
+        </section>
+    
         <section id="analysis">
-            <h2>Analysis & Methodology</h2>
+            <h2>Analysis</h2>
+            
+            <h3>Data Preparation</h3>
             <p>
-                To achieve the project objectives, I utilized the following methodologies:
+                Before modeling, the dataset was cleaned and prepared to improve accuracy and consistency. Missing values represented as “?” were converted to null values and handled appropriately. Variables with excessive missing data, including weight, payer code, and medical specialty, were removed. Identifier columns such as encounter ID and patient number were also excluded because they do not contribute to prediction. Categorical variables were converted into numerical format using one-hot encoding, and the dataset was split into training and testing sets using an 80/20 split.
             </p>
-            <ul>
-                <li>Exploratory Data Analysis (EDA)</li>
-                <li>Logistic Regression / Random Forest Modeling</li>
-                <li>Performance Evaluation using ROC/AUC and Confusion Matrices</li>
-            </ul>
+
+            <h3>Modeling Techniques</h3>
+            <p>
+                Two models were evaluated for this project: Logistic Regression and Random Forest. Logistic Regression was used as a baseline model because it is simple and interpretable, while Random Forest was selected because it can capture more complex relationships in the data and often performs well with structured datasets.
+            </p>
+
+            <h3>Model Evaluation</h3>
+            <p>
+                The Random Forest model achieved the strongest overall performance and was selected as the final model. The final model achieved an accuracy of approximately <strong>88.8%</strong>. However, class imbalance remained an important limitation, as the model performed much better at identifying patients who were not readmitted than patients who were readmitted within 30 days. Class weighting was applied to improve detection of the minority class.
+            </p>
+
+            <div class="highlight-box">
+                <strong>Evaluation Insight:</strong> Although overall accuracy was high, the imbalance in the target variable made prediction of readmitted patients more difficult, which is important to consider when interpreting the model’s usefulness.
+            </div>
+
+            <h3>Key Predictors</h3>
+            <p>
+                Feature importance analysis indicated that prior inpatient visits, number of medications, and time spent in the hospital were among the most important predictors of readmission. These findings suggest that patients with higher healthcare utilization and more complex care needs are at greater risk of returning to the hospital within 30 days.
+            </p>
+
+            <div class="graph">
+                <img src="feature_importance.png" alt="Feature importance chart">
+                <div class="graph-caption">
+                    Figure 2. Top predictors of 30 day hospital readmission based on the Random Forest model.
+                </div>
+            </div>
+            <p>
+                To view the full technical workflow, including data cleaning, model training, and evaluation in Google Colab, use the link below.
+            </p>
+
+            <a href="https://colab.research.google.com/drive/1RKfinwfG4TOgbECmMwUSImQ3iSg6qttS?usp=sharing" class="btn" onclick="alert('Link your full report or notebook here!')">View Full Technical Report</a>
         </section>
 
-        <section id="results">
-            <h2>Results & Conclusion</h2>
+        <section id="Conclusion">
+            <h2>Conclusion</h2>
+            
+            <h3>Summary of Results</h3>
             <p>
-                The final model achieved an accuracy of [X%]. Key findings suggest that [Variable A] is the 
-                strongest predictor for [Target Variable]. These results can help stakeholders by...
+                This project developed predictive models to identify patients at risk of hospital readmission within 30 days. Among the models tested, Random Forest performed best and was selected as the final model. The analysis showed that previous inpatient utilization, medication count, and length of stay were important predictors of readmission risk.
             </p>
-            <a href="https://colab.research.google.com/drive/1RKfinwfG4TOgbECmMwUSImQ3iSg6qttS?usp=sharing" class="btn" onclick="alert('Link your full report or notebook here!')">View Full Technical Report</a>
+
+            <h3>Recommendations and Limitations</h3>
+            <p>
+                Hospitals can use this model to identify higher-risk patients and support earlier interventions aimed at reducing readmissions. At the same time, the model is limited by class imbalance and missing data, which may affect predictive performance. Future improvements could include additional clinical variables and more advanced methods for handling imbalanced data.
+            </p>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2024 ISOM 835 Student Project | Hosted on GitHub Pages</p>
+        <p>&copy; 2026 ISOM 835 Student Project | Hosted on GitHub Pages</p>
     </footer>
 
     <script>
-        // JavaScript for Smooth Scrolling
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -169,8 +224,6 @@
                 });
             });
         });
-
-        console.log("Portfolio project site loaded successfully.");
     </script>
 </body>
 </html>
