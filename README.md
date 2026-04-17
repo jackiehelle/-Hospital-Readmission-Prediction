@@ -73,7 +73,7 @@ This project demonstrates how predictive analytics can be used to identify patie
 
 ## Project Links
 
-- **Live Website:** https://jackiehelle.github.io/-hospital-readmission-prediction/](https://jackiehelle.github.io/-Hospital-Readmission-Prediction/
+- **Live Website:** https://jackiehelle.github.io/-Hospital-Readmission-Prediction/
 - **Google Colab Notebook:** https://colab.research.google.com/drive/1RKfinwfG4TOgbECmMwUSImQ3iSg6qttS?usp=sharing
 
 ---
